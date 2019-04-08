@@ -22,6 +22,7 @@ public class EsCloudVoEnum {
 	 * Created on 2016-9-19 上午11:52:56
 	 */
 	public static enum ProductLineEnum {
+
 		LOG("log");
 
 		private String name;
