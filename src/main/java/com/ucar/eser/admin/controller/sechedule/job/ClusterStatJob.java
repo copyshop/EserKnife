@@ -28,13 +28,13 @@ import java.util.List;
  * All Rights Reserved.
  */
 public class ClusterStatJob extends EsBaseCenterJob {
-
+    
     private static final long serialVersionUID = 2626836144949582163L;
-
+    
     private AsyncService asyncService = (AsyncService) SpringInit.getApplicationContext().getBean("asyncServiceImpl");
-
+    
     private AlarmRuleService alarmRuleService = (AlarmRuleService) SpringInit.getApplicationContext().getBean("alarmRuleServiceImpl");
-
+    
     /**
      * 定时收集集群信息
      */
@@ -84,7 +84,7 @@ public class ClusterStatJob extends EsBaseCenterJob {
                     date));
             asyncService.submitFuture(new CollectionOsStatHandler(JobKey.buildFutureKey(clusterName, Constant.OS, date), clusterName, json, date));
             asyncService.submitFuture(new CollectionFsStatHandler(JobKey.buildFutureKey(clusterName, Constant.FS, date), clusterName, json, date));
-
+            
             //报警处理
             List<AlarmRule> all = alarmRuleService.getList();
             List<AlarmRule> alarmFilterRule = new ArrayList<AlarmRule>();
@@ -102,7 +102,7 @@ public class ClusterStatJob extends EsBaseCenterJob {
                     json,
                     alarmFilterRule));
         } catch (Exception e) {
-            LOGGER.error("定时获取集群统计异常", e.getStackTrace());
+            LOGGER.error("定时获取集群统计异常", e);
         }
     }
 }
