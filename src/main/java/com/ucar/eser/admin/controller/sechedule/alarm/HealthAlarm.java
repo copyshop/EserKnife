@@ -151,6 +151,7 @@ public class HealthAlarm extends KeyCallable<Boolean> {
 
 		// 这是一个bug 先这样写死解决
 		// MailClient.sendMessage("1140466863@qq.com", alarmMsg.toString(), ALARM_TITLE, ConfigUtil.I.envType());
+		System.out.println(">>>" + alarmMsg.toString() + "	" + ALARM_TITLE + "	" + ConfigUtil.I.envType());
 	}
 
 	private String checkTimeInit(String healthState, Map<String, Object> timeMap) {
